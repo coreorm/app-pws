@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PWS Store</title>
+    <link href="theme/paper.css" rel="stylesheet"/>
+    <style>
+        h1, h2, h3, h4, h5, h6, h7 {
+            color: #0c84e4;
+            /*font-weight: bold;*/
+        }
+
+        select, select.form-control {
+            padding: 2px 14px 2px 6px;
+        }
+
+        body {
+            margin-bottom: 100px;
+            font-size: 15px;
+        }
+
+        .example1 label,
+        .example1 input,
+        .example1 button {
+            margin: 2px;
+            padding: 2px 10px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        .example1 label {
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default hidden" id="nav"></nav>
+<div class="container" id="pws"></div>
+<div class="container" id="result"></div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body…</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-success" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<script src="bower_components/simple.js/dist/simple.min.js"></script>
+<script src="js/jquery.js"></script>
+<script async src="app/pws.js"></script>
+<script async src="app/nav.js"></script>
+<script async src="js/bootstrap.min.js"></script>
+<script async src="js/showdown.min.js"></script>
+<link rel="stylesheet" href="css/xcode.css">
+<script src="js/highlight.min.js"></script>
+</body>
+</html>
