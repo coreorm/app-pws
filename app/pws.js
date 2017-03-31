@@ -139,9 +139,9 @@
         // just refresh
         location.reload();
     });
-    app.on(SimpleAppStateIsUpdated, 'search', function (state) {
+    app.on(SimpleAppStateIsUpdated, 'search', function (obj) {
         // just refresh
-        console.log(state);
+        console.log(obj.state.search);
     });
 
 })
