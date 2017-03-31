@@ -112,12 +112,6 @@
     };
 // before render
     app.on(SimpleAppWillRender, 'default', function () {
-        // verify if endpoint/key saved already
-        if (!app.state.endpoint) {
-            jQuery('#frm_init').removeClass('hidden');
-            return;
-        }
-
         read(app.state.endpoint, app.state.apiKey, function (r, e) {
             if (e) {
                 jQuery('#frm_init').removeClass('hidden');

@@ -48,6 +48,6 @@
     };
 
     // init app (and auto render only for this one)
-    app.init(document.getElementById('result'), true);
+    app.init(document.getElementById('result'), false);
 
 })();
