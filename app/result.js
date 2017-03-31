@@ -4,14 +4,8 @@
     const app = SimpleApp('result');
 
     app.data = {
-        hdr: {
-            label: 'pws'
-        },
-        links: {
+        rows: {
             element: [{
-                href: '/',
-                label: 'pws store',
-                title: 'Simple.Js'
             }]
         }
     };
@@ -23,10 +17,32 @@
     app.template.sub = {
         rows: {
             _wrapper: ['<div {attr}>', '</div>'],
-            default: `<div {attr}>
-<div class="panel-heading">{_hdr}</div> 
-<div class="panel-body">{_desc} 
-<div class="{_extra}" id="{exampleId}"></div> 
+            default: `<div {attr} class="panel panel-default">
+<div class="panel-body">
+    <form type="post" onsubmit="SimpleApp('result').p()">
+        <div class="form-group">
+            <input type="text" type="text" placeholder="Section" value="{_s}" class="form-control" id="u_{id}">
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+              <input type="text" type="text" value="{_u}" class="form-control" id="u_{id}">
+              <span class="input-group-btn">
+                <button class="btn btn-sm btn-default" onclick="copy('u_{id}')" type="button">copy</button>
+              </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+              <input type="text" type="password" value="{_p}" class="form-control" id="p_{id}">
+              <span class="input-group-btn">
+                <button class="btn btn-sm btn-default" onclick="copy('p_{id}')" type="button">copy</button>
+              </span>
+            </div>
+        </div>        
+        <div class="form-group">
+            <button class="btn btn-success">Save</button>
+        </div>
+    </form>
 </div></div>`
         }
     };

@@ -53,19 +53,7 @@
     </form>
     <form class="hidden" id="frm_pws">
         <div class="form-group">
-            <label for="section">section</label>
-            {section}
-        </div>
-        <div class="form-group">
-            <label for="u">username</label>
-            {u}
-        </div>
-        <div class="form-group">
-            <label for="p">password</label>
-            {p}
-        </div>
-        <div class="form-group">
-            {saveBtn}
+            {search}
         </div>
     </form>
 `
@@ -88,15 +76,7 @@
         _type: 'input',
         default: '<input {attr}>'
     };
-    app.template.sub.section = {
-        _type: 'input',
-        default: '<input {attr}>'
-    };
-    app.template.sub.u = {
-        _type: 'input',
-        default: '<input {attr}>'
-    };
-    app.template.sub.p = {
+    app.template.sub.search = {
         _type: 'input',
         default: '<input {attr}>'
     };
@@ -125,18 +105,10 @@
         class: 'btn btn-primary',
         _caption: 'save/update'
     };
-    app.data.section = {
+    app.data.search = {
         class: 'form-control',
-        name: 'section'
-    };
-    app.data.p = {
-        class: 'form-control',
-        type: 'password',
-        name: 'password'
-    };
-    app.data.u = {
-        class: 'form-control',
-        name: 'u'
+        placeholder: 'Enter keyword to search',
+        name: 'search'
     };
 // before render
     app.on(SimpleAppWillRender, 'default', function () {
@@ -166,6 +138,10 @@
     app.on(SimpleAppStateIsUpdated, 'button', function () {
         // just refresh
         location.reload();
+    });
+    app.on(SimpleAppStateIsUpdated, 'search', function (state) {
+        // just refresh
+        console.log(state);
     });
 
 })
