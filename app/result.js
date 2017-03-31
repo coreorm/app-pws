@@ -5,8 +5,7 @@
 
     app.data = {
         rows: {
-            element: [{
-            }]
+            element: [{}]
         }
     };
 
@@ -16,26 +15,29 @@
 
     app.template.sub = {
         rows: {
-            _wrapper: ['<div {attr}>', '</div>'],
-            default: `<div {attr} class="panel panel-default">
-<div class="panel-body">
+            _wrapper: ['<div {attr} class="container-fluid">', '</div>'],
+            default: `<div {attr} class="card" style="margin: 10px;">
+<div class="card-header">
+    {_s}
+</div>
+<div class="card-block">
     <form type="post" onsubmit="SimpleApp('result').p()">
-        <div class="form-group">
-            <input type="text" type="text" placeholder="Section" value="{_s}" class="form-control" id="u_{id}">
+        <div class="form-group hidden">
+            <input type="text" type="text" placeholder="Section" value="{_s}" class="form-control" id="s_{id}">
         </div>
         <div class="form-group">
             <div class="input-group">
               <input type="text" type="text" value="{_u}" class="form-control" id="u_{id}">
               <span class="input-group-btn">
-                <button class="btn btn-sm btn-default" onclick="copy('u_{id}')" type="button">copy</button>
+                <button class="btn btn-sm btn-secondary" onclick="copy('u_{id}')" type="button">copy</button>
               </span>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
-              <input type="text" type="password" value="{_p}" class="form-control" id="p_{id}">
+              <input type="password" value="{_p}" class="form-control" id="p_{id}">
               <span class="input-group-btn">
-                <button class="btn btn-sm btn-default" onclick="copy('p_{id}')" type="button">copy</button>
+                <button class="btn btn-sm btn-secondary" onclick="copy('p_{id}')" type="button">copy</button>
               </span>
             </div>
         </div>        

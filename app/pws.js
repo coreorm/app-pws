@@ -38,13 +38,13 @@
 // 2. setup templates
 // main template
     app.template.main = {
-        default: `<form class="hidden" id="frm_init">
+        default: `<form class="form-horizontal hidden" id="frm_init">
         <div class="form-group">
             <label for="endpoint">endpoint</label>
             {endpoint}
         </div>
         <div class="form-group">
-            <label for="apikKey">endpoint</label>
+            <label for="apikKey">API Key</label>
             {apiKey}
         </div>
         <div class="form-group">
@@ -52,9 +52,7 @@
         </div>
     </form>
     <form class="hidden" id="frm_pws">
-        <div class="form-group">
-            {search}
-        </div>
+        {search}
     </form>
 `
     };
@@ -117,12 +115,15 @@
                 jQuery('#frm_init').removeClass('hidden');
             }
             try {
-                data = atob(r.data);
+                data = JSON.parse(atob(r.data));
                 jQuery('#frm_pws').removeClass('hidden');
             } catch (e) {
+                console.log(e);
                 jQuery('#frm_init').removeClass('hidden');
             }
         });
+        // always clear keyword
+        app.state.search = '';
     });
 
 // render to div: example 1 and force render
@@ -134,8 +135,43 @@
         location.reload();
     });
     app.on(SimpleAppStateIsUpdated, 'search', function (obj) {
+        if (!obj.state.search || obj.state.search.length <= 2) {
+            SimpleApp('result').data.rows.element = [];
+            SimpleApp('result').render();
+            return;
+        }
         // just refresh
-        console.log(obj.state.search);
+        let key = obj.state.search.toLowerCase();
+        let dataFound = [];
+        for (let section in data) {
+            if (section.toLowerCase().indexOf(key) >= 0) {
+                for (let k in data[section]) {
+                    if (data[section][k].u) {
+                        dataFound.push({
+                            _s: section,
+                            _h: k,
+                            _u: data[section][k].u,
+                            _p: data[section][k].p,
+                        });
+                    }
+                }
+            } else {
+                // find only valid ones
+                for (let n in data[section]) {
+                    let pair = data[section][n];
+                    if (pair.u && pair.u.toLowerCase().indexOf(key) >= 0) {
+                        dataFound.push({
+                            _s: section,
+                            _h: n,
+                            _u: pair.u,
+                            _p: pair.p,
+                        });
+                    }
+                }
+            }
+        }
+        SimpleApp('result').data.rows.element = dataFound;
+        SimpleApp('result').render();
     });
 
 })

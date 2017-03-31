@@ -9,7 +9,7 @@
         },
         links: {
             element: [{
-                href: '/',
+                href: 'https://coreorm.github.io/app-pws/',
                 label: 'pws store',
                 title: 'Simple.Js'
             }]
@@ -17,17 +17,23 @@
     };
 
     app.template.main = {
-        default: '<div class="container container-fluid">{hdr}{links}</div>'
+        default: '<header>{hdr}{links}</header>'
     };
 
     app.template.sub = {
         hdr: {
-            default: '<div {attr} class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">' + '<span class="sr-only">Toggle navigation</span>' + '<span class="icon-bar"></span>' + '<span class="icon-bar"></span>' + '<span class="icon-bar"></span>' + '</button><label class="navbar-brand"> {label} </label>' + '</div>'
+            default: `<div {attr}>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+            <a class="navbar-brand"> {label} </a> </div>`
         },
         links: {
             _type: 'link',
-            _wrapper: ['<div class="collapse navbar-collapse" id="menu"> <ul class="nav navbar-nav" id="{id}">', '</ul></div>'],
-            default: '<li id="{id}"><a href="{href}">{label}</a></li>'
+            _wrapper: ['<div class="collapse navbar-collapse" id="menu"> <ul class="navbar-nav mr-auto" id="{id}">', '</ul></div>'],
+            default: `<li class="nav-item" id="{id}">
+                <a href="{href}" class="nav-link">{label}</a>
+            </li>`
         }
     };
 
