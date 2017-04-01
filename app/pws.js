@@ -116,6 +116,7 @@
             }
             try {
                 data = JSON.parse(atob(r.data));
+                jQuery('#loader').hide();
                 jQuery('#frm_pws').removeClass('hidden');
             } catch (e) {
                 console.log(e);
@@ -135,7 +136,7 @@
         location.reload();
     });
     app.on(SimpleAppStateIsUpdated, 'search', function (obj) {
-        if (!obj.state.search || obj.state.search.length <= 2) {
+        if (!obj.state.search || obj.state.search.length <= 1) {
             SimpleApp('result').data.rows.element = [];
             SimpleApp('result').render();
             return;
