@@ -1,22 +1,22 @@
 'use strict';
 
 (function () {
-    const app = SimpleApp('result');
+  const app = SimpleApp('result');
 
-    app.data = {
-        rows: {
-            element: [{}]
-        }
-    };
+  app.data = {
+    rows: {
+      element: [{}]
+    }
+  };
 
-    app.template.main = {
-        default: '{rows}'
-    };
+  app.template.main = {
+    default: '{rows}'
+  };
 
-    app.template.sub = {
-        rows: {
-            _wrapper: ['<div {attr} class="container-fluid"><div class="row">', '</div></div>'],
-            default: `<div {attr} class="col" style="margin: 30px 0 0 0;min-width:300px;"><div class="card">
+  app.template.sub = {
+    rows: {
+      _wrapper: ['<div {attr} class="container-fluid"><div class="row">', '</div></div>'],
+      default: `<div {attr} class="col" style="margin: 30px 0 0 0;min-width:300px;"><div class="card">
 <div class="card-header">
     <div style="max-width: 100%;overflow: hidden;display: inline-block;white-space: nowrap;text-overflow: ellipsis;">
     <button class="btn btn-sm btn-secondary" style="display: inline-block; margin-right: 10px;"
@@ -50,12 +50,13 @@
               <input type="password" readonly="readonly" value="{_p}" class="form-control" id="p_{id}">
             </div>
         </div>
+        {_extra}
     </form>
 </div></div></div>`
-        }
-    };
+    }
+  };
 
-    // init app (and auto render only for this one)
-    app.init(document.getElementById('result'), false);
+  // init app (and auto render only for this one)
+  app.init(document.getElementById('result'), false);
 
 })();

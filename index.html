@@ -41,19 +41,31 @@
         }
     </style>
     <script>
-        function copy(id, obj) {
-            let elem = document.getElementById(id);
-            new Clipboard('.btn', {
-                text: function () {
-                    return elem.value;
-                }
-            });
+      function copy(id, obj) {
+        let elem = document.getElementById(id);
+        new Clipboard('.btn', {
+          text: function () {
+            return elem.value;
+          }
+        });
 
-            $(obj).popover('toggle');
-            setTimeout(function() {
-                $(obj).popover('toggle');
-            }, 700);
+        $(obj).popover('toggle');
+        setTimeout(function () {
+          $(obj).popover('toggle');
+        }, 700);
+      }
+      function showExtra(data) {
+        data = JSON.parse(atob(data));
+        console.log(data);
+        try {
+          SimpleApp('modal').data.rows.element = data;
+          SimpleApp('modal').render();
+        } catch (e) {
+          console.error(e);
         }
+        $('#myModal').modal('show');
+        return false;
+      }
     </script>
 </head>
 <body>
@@ -81,12 +93,16 @@
 <div class="container" id="result"></div>
 
 <!-- Modal -->
-<div id="myModal" class="modal fade">
-    <div class="modal-dialog">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <p>Content copied to clipboard</p>
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body" id="myModalContent"></div>
         </div>
     </div>
 </div>
@@ -105,6 +121,7 @@
 <script async src="app/pws.js"></script>
 <!--<script async src="app/nav.js"></script>-->
 <script async src="app/result.js"></script>
+<script async src="app/modal.js"></script>
 <script async src="js/showdown.min.js"></script>
 <link rel="stylesheet" href="css/xcode.css">
 <script src="js/highlight.min.js"></script>
